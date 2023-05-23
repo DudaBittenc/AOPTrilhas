@@ -72,8 +72,7 @@ public class ArtistaDAO {
     
     //SELECT 
     public Artista lisById(int i) throws SQLException {
-        String query = "SELECT * FROM artistas" 
-                + "WHERE id_artista = " + i;
+        String query = "SELECT * FROM artistas WHERE cod_artista = " + i;
         PreparedStatement prep = conn.prepareStatement(query);
         ResultSet res = prep.executeQuery();
         
@@ -107,6 +106,15 @@ public class ArtistaDAO {
         prep.execute();
         prep.close();
 
+    }
+    
+    public void deleteArtista(int id) throws SQLException{
+        String query = "DELETE FROM artistas "
+                + "WHERE cod_artista = " + id;
+        
+        PreparedStatement prep = conn.prepareStatement(query);
+        prep.execute();
+        prep.close();
     }
             
 }//Fim da classe

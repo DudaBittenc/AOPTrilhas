@@ -1,4 +1,5 @@
 
+
 <%@page import="model.ArtistaDAO" %>
 <%@page import="model.Artista" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,16 +30,16 @@
                     for(Artista art : adao.listAll()) {
                 %>
                 <tr>
-                    <td><%= art.getIdArtista() %></td>
+                    <td><%= art.getIdArtista()%></td>
                     <td><%= art.getArtista()%></td>
                     <td><%= art.getGenero()%></td>
                     <td><%= art.getNacionalidade()%></td>
                     <td><%= art.getSolo()%></td>
                     <td>
-                        <a href="ArtistaUpdate?id=">EDITAR</a>
+                        <a href="ArtistaUpdate?id=<%= art.getIdArtista()%>">EDITAR</a>
                     </td>
                     <td>
-                        <a onclick="confirmDelete()">EXCLUIR</a>
+                        <a onclick="confirmDelete(<%= art.getIdArtista() %>)">EXCLUIR</a>
                     </td>
                 </tr>
                <% } %>
@@ -49,9 +50,9 @@
         <a href="home.jsp" >Pagina inicial</a>
         
         <script>
-        function confirmDelete(){
+        function confirmDelete(id){
             if(confirm("Deseja relmente excluir?")){
-                window.location.replace("ArtistaDelete?cod=");
+                window.location.replace("ArtistaDelete?cod=" + id);
             }else{
                 alert("Exclusão cancelada!");
             }

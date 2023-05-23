@@ -1,3 +1,4 @@
+
 package controller;
 
 import java.io.IOException;
@@ -8,78 +9,45 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Artista;
 import model.ArtistaDAO;
 
+@WebServlet(name = "ArtistaUpdate", urlPatterns = {"/ArtistaUpdate"})
+public class ArtistaUpdate extends HttpServlet {
 
-@WebServlet(name = "CadastroArtista", urlPatterns = {"/CadastroArtista"})
-public class CadastroArtista extends HttpServlet {
-    private int id;
-    private String artista;
-    private int genero;
-    private String nacionalidade;
-    private int solo;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-        //Verificar se há um ID
-        if(request.getParameter("id")!=null){
-            this.id = Integer.parseInt(request.getParameter("id"));
-        }
         
+       //Recebendo o ID
+        int id = Integer.parseInt(request.getParameter("id"));
         
+        //Pegando registro do BD
+            try{
+                ArtistaDAO adao = new ArtistaDAO();
+                Artista art = adao.lisById(id);
+                request.setAttribute("artista", art);
+                request.getRequestDispatcher("edit-artista.jsp")
+                    .forward(request, response);
+            } catch(SQLException | ClassNotFoundException erro){
         
-        //Recebendo valores do formulário de cadastro
-        this.artista = request.getParameter("artista");
-        this.genero = Integer.parseInt(request.getParameter("genero"));
-        this.nacionalidade = request.getParameter("nacionalidade");
-        if(request.getParameter("solo")!=null){
-            this.solo = 1;
-        } else {
-            this.solo = 0;
-        }
-        
-        //Criando objeto da classe Artista para salvar no BD
-        Artista artista = new Artista(
-                this.artista,
-                this.genero,
-                this.nacionalidade,
-                this.solo
-        );
-        
-        //Instanciando a classe DAO para usar o método
-        //de inserção enviando o objeto criado acima
-        try {
-            ArtistaDAO adao = new ArtistaDAO();
-            
-            //Se tivermos um ID, atualizaremos o registro
-            //senão salvaremos como um novo registro
-            if(request.getParameter("id")!=null){
-                artista.setIdArtista(this.id);
-                adao.updateArtista(artista);
-            } else{
-                adao.insertArtista(artista);
-            }
-            response.sendRedirect("lista.jsp");
-        
-        } catch(ClassNotFoundException | SQLException erro) {   
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastroArtista</title>");            
+            out.println("<title>Servlet ArtistaUpdate</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Ocorreu algum erro: " + erro + "</h1>");
+            out.println("<h1>Erro: " + erro +" </h1>");
             out.println("</body>");
             out.println("</html>");
         }
-        }
     }
-
+   }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -92,7 +60,11 @@ public class CadastroArtista extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ArtistaUpdate.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -106,7 +78,11 @@ public class CadastroArtista extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ArtistaUpdate.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -118,5 +94,4 @@ public class CadastroArtista extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-}
+    }
