@@ -4,7 +4,18 @@ html {
     height: 100%;
     background-size: 100%;
 }
+
+.bem_vindo{
+    text-align: center;
+    margin-top: 5%;
+    font-size: 30pt;
+}
+
 button {
+    display: flex;
+    justify-content: center;
+    margin-left: 45%;
+    margin-top: 3%;
     width: 180px;
     padding: 5px 0px 5px 0px;
     font-size: 18pt;
@@ -12,7 +23,6 @@ button {
     background-color: #C1B7B7;
     border: 3px solid #000000;
     cursor: pointer;
-    margin: auto;
 }
 button:hover{
     width: 180px;
@@ -24,8 +34,10 @@ button:hover{
     cursor: pointer;
     box-shadow: 0px 0px 5px #000000;
 }
-.bem_vindo{
-    text-align: center;
-    margin-top: 5%;
-    font-size: 30pt;
+
+#form-cadastro {
+    color: white;
+}
+h1{
+    color: white;
 }

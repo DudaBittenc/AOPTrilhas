@@ -9,12 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/style-home.css"/>
         <title>Musica</title>
     </head>
     <body>
         <h1>Cadastro</h1>
         <hr>
-        <form action="CadastroArtista" method="post">
+        <form action="CadastroArtista" method="post" id="form-cadastro">
             <h3>Novo Artista</h3>
             <input type="text" name="artista" placeholder="Nome do Artista">
             <br><br>
