@@ -19,14 +19,14 @@
     </head>
     <body>
         <%@include file="session/verify.jsp" %>
-        <p>
+        <p class="bem_vindo">
             Bem vindo <%= (uSession != null)
                             ? uSession.getUserName()
                             : "visitante" %>
-            <button onclick="window.location.href='session/logout.jsp'">Logout</button>
         </p>
         <hr>
-        <button onclick="window.location.href='cadastro.jsp'">CADASTRAR</button>
-        <button onclick="window.location.href='lista.jsp'">LISTAR</button>
+        <button onclick="window.location.href='session/logout.jsp'">Logout</button>
+        <button onclick="window.location.href='cadastro.jsp'">Cadastrar</button>
+        <button onclick="window.location.href='lista.jsp'">Listar</button>
     </body>
 </html>
