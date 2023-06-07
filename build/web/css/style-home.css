@@ -9,6 +9,7 @@ html {
     text-align: center;
     margin-top: 5%;
     font-size: 30pt;
+    color: #C1B7B7;
 }
 
 button {
@@ -36,8 +37,14 @@ button:hover{
 }
 
 #form-cadastro {
-    color: white;
+    color: #C1B7B7;
 }
 h1{
-    color: white;
+    color: #C1B7B7;
+}
+tbody{
+    color: #C1B7B7;
+}
+thead{
+    color: #C1B7B7;
 }

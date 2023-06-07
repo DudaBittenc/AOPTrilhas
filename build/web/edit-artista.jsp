@@ -14,6 +14,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="css/style-home.css"/>      <link rel="icon" href="img/desc.jpg"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Musica</title>
     </head>
